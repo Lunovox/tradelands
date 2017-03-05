@@ -5,3 +5,9 @@ Licence:
 
 Developers:
  * Lunovox <lunovox@openmailbox.org>
+ 
+Configurações:
+ * Altere o arquivo 'config.lua' para mudar as configurações iniciais do mod, como: 
+	* preço da proteção, 
+	* tempo de validade, 
+	* tamanho de área, PVP de Área
