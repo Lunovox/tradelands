@@ -39,34 +39,34 @@ modTradeLands.getFormMain = function(pos, playername)
 	--..default.gui_bg
 	--..default.gui_bg_img
 	--..default.gui_slots
-	.."label[0,0;ALVARÁ DE TERRENO]"
-	.."button_exit[0,0.50;3,1;btnShowLand;Exibir Tamanho]"
+	.."label[0,0;"..S("LAND PERMISSION").."]"
+	.."button_exit[0,0.50;3,1;btnShowLand;"..S("Show Size").."]"
 	
 	if not ifPermanentValidate then
 		frmHeight=frmHeight+0.75
-		formspec=formspec.."button[0,"..(frmHeight-1)..";3,1;btnPayForm;Proteger Terreno]"
+		formspec=formspec.."button[0,"..(frmHeight-1)..";3,1;btnPayForm;"..S("Protect Land").."]"
 	end
 	
 	local ownername = modTradeLands.getOwnerName(pos)
 	if ownername~="" then
 		if ownername==playername or minetest.get_player_privs(playername).mayor then
 			frmHeight=frmHeight+0.75
-			formspec=formspec.."button[0,"..(frmHeight-1)..";3,1;btnGuestsForm;Listar Convidados]"
+			formspec=formspec.."button[0,"..(frmHeight-1)..";3,1;btnGuestsForm;"..S("Guest List").."]"
 		
 			frmHeight=frmHeight+0.75
-			formspec=formspec.."button[0,"..(frmHeight-1)..";3,1;btnConfigForm;Configurar]"
+			formspec=formspec.."button[0,"..(frmHeight-1)..";3,1;btnConfigForm;"..S("Set up").."]"
 
 			frmHeight=frmHeight+0.75
-			formspec=formspec.."button[0,"..(frmHeight-1)..";3,1;btnGiveUpForm;Abandonar Terreno]"
+			formspec=formspec.."button[0,"..(frmHeight-1)..";3,1;btnGiveUpForm;"..S("Leave Ground").."]"
 
 			if minetest.get_player_privs(playername).mayor then
 				frmHeight=frmHeight+0.75
-				formspec=formspec.."checkbox[0,"..(frmHeight-1)..";chkPermanentValidate;Proteção Permanente;"..tostring(ifPermanentValidate).."]"
+				formspec=formspec.."checkbox[0,"..(frmHeight-1)..";chkPermanentValidate;"..S("Permanent Protection")..";"..tostring(ifPermanentValidate).."]"
 			end
 		end
 	end
 	
-	formspec=formspec.."label[0,"..(frmHeight-0.25)..";Terreno: "..landname.."]"
+	formspec=formspec.."label[0,"..(frmHeight-0.25)..";"..S("Land")..": "..landname.."]"
 
 	return "size[3,"..frmHeight.."]"..formspec
 end
@@ -77,10 +77,10 @@ modTradeLands.getFormGiveUpLand = function(pos, playername)
 	--..default.gui_bg
 	--..default.gui_bg_img
 	--..default.gui_slots
-	.."label[0,0;ABANDONO DE TERRENO]"
-	.."label[0,0.75;Deseja realmente desproteger deste terreno?]"
-	.."button[0.5,1.5;2,1;btnGiveUpYes;Desproteger]"
-	.."button[3.0,1.5;2,1;btnGiveUpNot;Cancelar]"
+	.."label[0,0;"..S("LEAVING TERRITORY").."]"
+	.."label[0,0.75;"..S("Do you really want to unprotect this land?").."]"
+	.."button[0.5,1.5;2,1;btnGiveUpYes;"..S("Unprotect").."]"
+	.."button[3.0,1.5;2,1;btnGiveUpNot;"..S("Cancel").."]"
 	return formspec
 end
 
@@ -91,12 +91,12 @@ modTradeLands.getFormSpecGuests = function(pos, playername)
 	--..default.gui_bg
 	--..default.gui_bg_img
 	--..default.gui_slots
-	.."label[0,0;CONVIDADOS DO TERRENO]"
+	.."label[0,0;"..S("LAND GUESTS").."]"
 	.."textlist[0,0.5;3.85,2;selGuest;"..listGuests..";0;false]"
-	.."button[0,2.60;4,1;btnDelGuest;Remover Convidado]"
+	.."button[0,2.60;4,1;btnDelGuest;"..S("Remove Guest").."]"
 	--.."pwdfield[0.29,4.25;4,1;txtNewGuest;Nome do Convidado]"
-	.."field[0.29,4.25;4,1;txtNewGuest;Nome do Convidado;]"
-	.."button[0,4.75;4,1;btnNewGuest;Adicionar Convidado]"
+	.."field[0.29,4.25;4,1;txtNewGuest;"..S("Guest Name")..";]"
+	.."button[0,4.75;4,1;btnNewGuest;"..S("Add Guest").."]"
 	return formspec
 end
 
@@ -111,28 +111,30 @@ modTradeLands.getFormSpecConfig = function(pos, playername)
 	--..default.gui_bg
 	--..default.gui_bg_img
 	--..default.gui_slots
-	.."label[0,0;CONFIGURAÇÃO DO TERRENO]"
+	.."label[0,0;"..S("LAND CONFIGURATION").."]"
 	--{"checkbox", x=<X>, y=<Y>, name="<name>", label="<label>", selected=<selected>}
-	.."checkbox[0,0.50;chkIfDamage;Habilitar dano de interação forçada;"..ifDamageString.."]"
+	.."checkbox[0,0.50;chkIfDamage;"..S("Enable damage by forced interaction")..";"..ifDamageString.."]"
 
-	.."label[0,1.62;"..minetest.formspec_escape("Tipo de PVP:").."]"
+	.."label[0,1.62;"..minetest.formspec_escape(S("PVP type")..":").."]"
 	.."dropdown[1.75,1.5;3,0.25;selPvpType;"..pvpStrings..";"..pvpTypeIndex.."]"
 	return formspec
 end
 
 modTradeLands.getFormSpecPay = function(pos, playername)
 	local ownername = modTradeLands.getOwnerName(pos)
-	if ownername=="" then ownername="nenhum" end
+	if ownername=="" then 
+		ownername=S("Nobody")
+	end
 	local dayRests =  modTradeLands.getDaysRest(pos)
-	local strValidate = "nenhum"
+	local strValidate = S("Without Maturity")
 	local strRest = ""
 	if dayRests>0 then 
 		strValidate = modTradeLands.getValidateString(modTradeLands.getValidate(pos)) 
-		if dayRests > 0 then strRest="(restam "..math.ceil(dayRests).." dias)"	end
+		if dayRests > 0 then strRest="("..( S("%02d days remain"):format(math.ceil(dayRests)) )..")"	end --format("pi = %.4f", PI)
 	end
 	local strNewValidate = modTradeLands.getValidateString(modTradeLands.getNewValidate(pos))
 	if modTradeLands.protected_days>0 then
-		strNewValidate=strNewValidate.." (até "..modTradeLands.protected_days.." dias)"
+		strNewValidate=strNewValidate.." ("..( S("Up to %02d days"):format(modTradeLands.protected_days) )..")"
 	end
 
 	local formspec = "size[8,9]"
@@ -140,25 +142,25 @@ modTradeLands.getFormSpecPay = function(pos, playername)
 	--..default.gui_bg
 	--..default.gui_bg_img
 	--..default.gui_slots
-	.."label[1.5,0;ALVARÁ DE PROTEÇÃO DE TERRENO]"
+	.."label[1.5,0;"..S("LAND PROTECTION WILL").."]"
 	
 	--.."vertlabel[0,3;Preço:]"
-	.."label[0.5,0.5;Taxa:]"
+	.."label[0.5,0.5;"..S("Cost")..":]"
 	.."list[detached:charter;listPrice;0.5,1;2,2;]"
 
-	.."label[3.5,0.5;Pagamento:]"
+	.."label[3.5,0.5;"..S("Payment")..":]"
 	.."list[detached:charter;listPay;3.5,1;2,2;]"
 
 
-	.."label[0.5,3;Vencimento: "..strValidate.." "..strRest.."\n"
-	.."Renovação: "..strNewValidate.."]"
+	.."label[0.5,3;"..S("Maturity")..": "..strValidate.." "..strRest.."\n"
+	..S("Renovation")..": "..strNewValidate.."]"
 
-	.."label[0.5,4;Atual Dono: "..ownername.." \n"
-	.."Novo Dono: "..playername.." ]"
+	.."label[0.5,4;"..S("Current Owner")..": "..ownername.." \n"
+	..S("New Owner")..": "..playername.." ]"
 
 	--.."button[5.5,1.00;2,1;btnPay;Pagar]"
-	.."button_exit[5.5,1.00;2,1;btnPay;Pagar]"
-	.."button_exit[5.5,1.75;2,1;btnCancel;Cancelar]"
+	.."button_exit[5.5,1.00;2,1;btnPay;"..S("Pay").."]"
+	.."button_exit[5.5,1.75;2,1;btnCancel;"..S("Cancel").."]"
 	.."list[current_player;main;0,5;8,4;]"
 	return formspec
 end
@@ -169,7 +171,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		local playerpos = player:getpos()
 		--minetest.chat_send_player(playername, "minetest.register_on_player_receive_fields(player, formname, fields) ==> playername='"..playername.."' formname='"..formname.."' fields="..dump(fields))
 		if fields.btnShowLand then
-			minetest.chat_send_player(playername, "[TRADELANDS] Exibindo o tamanho do terreno atual!")
+			minetest.chat_send_player(playername, "[TRADELANDS] "..S("Displaying the current terrain size!"))
 			modTradeLands.doShowLand(playername) --Mostra o limite do territorio onde o jogador esta.
 		elseif fields.btnPayForm then
 			if type(modTradeLands.formPlayer)=="nil" then modTradeLands.formPlayer = {} end
@@ -188,13 +190,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			if type(fields.txtNewGuest)=="string" and fields.txtNewGuest~="" then
 				modTradeLands.addGuest(playerpos, fields.txtNewGuest)
 			else
-				minetest.chat_send_player(playername, "[TRADELANDS:ERRO] Digite o 'nome do convidado' antes de pressionar o botão 'Adicionar Comvidado'!")
+				minetest.chat_send_player(playername, "[TRADELANDS:ERRO] "..S("Enter the 'Guest Name' before pressing the 'Add Guest' button!"))
 			end
 			minetest.show_formspec(playername, "frmTradelands", modTradeLands.getFormSpecGuests(playerpos, playername))
 		elseif fields.selGuest then
 			if type(modTradeLands.formPlayer)=="nil" then modTradeLands.formPlayer = {} end
 			if type(modTradeLands.formPlayer[playername])=="nil" then modTradeLands.formPlayer[playername] = {} end
 			
+
 
 			local guests = modTradeLands.getGuests(playerpos)
 			local event = minetest.explode_textlist_event(fields.selGuest)
@@ -282,20 +285,21 @@ modTradeLands.doPay = function(playername) --Faz o pagamento do terreno
 				modTradeLands.doSave()
 		
 				--minetest.chat_send_player(playername, "[TRADELANDS] Parabens! Voce se tornou proprietario deste territorio!")
-				minetest.chat_send_all("[TRADELANDS] "..playername.." protegeu o terreno ("..modTradeLands.getLandName(selPos)..")!")
+				minetest.chat_send_all("[TRADELANDS] ".. S("The player '%s' protected the field (%s)!"):format(playername, modTradeLands.getLandName(selPos)) )
 				modTradeLands.doSoundProtector()
 			else
-				minetest.chat_send_player(playername, "[TRADELANDS:AVISO] Verifique se voce ofereceu corretamente a taxa de alvará!")
+				minetest.chat_send_player(playername, "[TRADELANDS:AVISO] "..S("Make sure you have correctly offered the license fee!"))
 			end
 		else
-			minetest.chat_send_player(playername, "[TRADELANDS:AVISO] Você so pode pagar a taxa de alvará adiantada uma única vez!")
+			minetest.chat_send_player(playername, "[TRADELANDS:AVISO] "..S("You can pay an advance license fee only once!"))
 		end
 		modTradeLands.giveChange(playername)
 	end
 end
 
 minetest.register_craftitem("tradelands:charter", {
-	description = "Alvará de Proteção de Terreno (16x16)",
+	description = S("Land Protection Permit")
+		.." ("..modTradeLands.areaSize.side.."x"..modTradeLands.areaSize.side..")",
 	inventory_image = "icon_charter.png",
 	on_use = function(itemstack, user, pointed_thing)
 		local playername = user:get_player_name()
@@ -311,11 +315,11 @@ minetest.register_craftitem("tradelands:charter", {
 				modTradeLands.formPlayer[playername].selPos = selPos --ATENCAO: O terreno protegido eh onde o jogador esta, e nao onde o jogar apontar.
 				minetest.show_formspec(playername, "frmTradelands", modTradeLands.getFormMain(selPos, playername))
 			else
-				minetest.chat_send_player(playername, "[TRADELANDS] Este terreno pertence a '"..ownername.."' por mais "..math.ceil(restDays).." dias!")
+				minetest.chat_send_player(playername, "[TRADELANDS] "..S("This lot belongs to '%s' for more %02d days!"):format(ownername, math.ceil(restDays)) )
 				
 			end
 		else
-			minetest.chat_send_player(playername, "[TRADELANDS] Você não pode usar o alvará com muita profundidade!")
+			minetest.chat_send_player(playername, "[TRADELANDS] "..S("You can not use the license very deeply!"))
 		end
 	end,
 })
@@ -330,7 +334,4 @@ minetest.register_craft({
 })
 
 minetest.register_alias("charter", "tradelands:charter")
-minetest.register_alias("alvara", "tradelands:charter")
-minetest.register_alias("alvará", "tradelands:charter")
-minetest.register_alias("alvarah", "tradelands:charter")
-minetest.register_alias("escritura", "tradelands:charter")
+minetest.register_alias(S("charter"), "tradelands:charter")

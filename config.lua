@@ -12,11 +12,5 @@ modTradeLands = {
 		"lunotrades:minemoney 3", "lunotrades:minecoin 3" --Equivale a 30 moedas
 	}, 
 	damage_interact = 6, --O valor do dano que o jogador receberá se forçar interagir com o terreno. (6 x 0,5 = 3HP)
-	pvp_types={  --O tipo de jogador que ter permissão de pvp no terreno. Aqui o admin pode traduzir as opções, mas não deve mudara a ordem.
-		[1]="Nenhum", --Se o jogador prefere que não haja nenhum pvp no territorio.
-		[2]="Só o Proprietário",  --Se o jogador prefere que só o proprietario possa entrar em pvp no territorio.
-		[3]="Se Pode Interagir",  --Se o jogador prefere que todos que pode interagir no territorio possam entrar em pvp no territorio.
-		[4]="Normal" --Se o jogador prefere que o pvp seja o padrão do servidor.
-	},
-	default_pvp = "Normal", --permissão padrão para terrenos desprotegidos.
+	
 }
