@@ -7,7 +7,7 @@ Protection of land on payment of periodic rate. The Minetest player can set perm
   * dye
 
 **Optional Dependencies:**
-  * intllib
+  * [intllib](https://github.com/minetest-mods/intllib)
   
 **Licence:**
  * GNU AGPL: https://pt.wikipedia.org/wiki/GNU_Affero_General_Public_License
@@ -34,3 +34,6 @@ Protection of land on payment of periodic rate. The Minetest player can set perm
 	* Make a copy of the file [ **pt.txt** ] in the [ **locale** ] folder that is inside the mod for [````locale/<your_language>.txt````]. Example for French language: ````locale/fr.txt````
 	* Open the file [````locale/<your_language>.txt````] in a simple text editor.
 	* Translate all lines. But, just here that stems the right of the equals symbol (=). Example for French Language: ````Only the Owner = Seul le propriétaire````
+
+**SCREENSHOT IN PORTUGUESE:**
+![](https://github.com/Lunovox/tradelands/raw/master/screenshot.png)
