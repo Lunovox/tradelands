@@ -1,8 +1,8 @@
 # TRADELANDS
 
-Protecao de terreno mediante pagamento de taxa periodica. Podendo o jogador do Minetest configurar permissoes de seu terreno.
+Protection of land on payment of periodic rate. The Minetest player can set permissions of PVP for his terrain.
 
-**Dependencias:**
+**Dependencies:**
   * default
   * dye
   
@@ -12,8 +12,9 @@ Protecao de terreno mediante pagamento de taxa periodica. Podendo o jogador do M
 **Developers:**
  * [Lunovox](mailto:lunovox@openmailbox.org)
 
-**Configurações:**
-  * Altere o arquivo **'config.lua'** para mudar as configurações iniciais do mod, como: 
-	* preço da proteção, 
-	* tempo de validade, 
-	* tamanho de área, PVP de Área
+**Settings:**
+  * Change the file **'config.lua'** to change the initial settings of the mod, such as:
+	* Price of protection,
+	* Expiration time,
+	* Size of area,
+	* Area PVP
