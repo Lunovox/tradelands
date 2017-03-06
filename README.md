@@ -24,7 +24,7 @@ Protection of land on payment of periodic rate. The Minetest player can set perm
 
 **Translate to Others Languages:**
 
-* This mod currently has configurable language:
+* This mod currently are configured to language:
 	* English
 	* Portuguese
 
