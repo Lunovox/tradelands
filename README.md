@@ -3,11 +3,11 @@
 Protection of land on payment of periodic rate. The Minetest player can set permissions of PVP for his terrain.
 
 **Dependencies:**
-  * default
-  * dye
+  * default (Standard Game Included)
+  * dye (Standard Game Included)
 
 **Optional Dependencies:**
-  * [intllib](https://github.com/minetest-mods/intllib)
+  * [intllib](https://github.com/minetest-mods/intllib) Facilitates the translation of several other mods into your native language, or other languages.
   
 **Licence:**
  * GNU AGPL: https://pt.wikipedia.org/wiki/GNU_Affero_General_Public_License
