@@ -1,6 +1,6 @@
 minetest.register_chatcommand("showland", {
 	params = "",
-	description = "Destaca os limites da atual de terra protegida.",
+	description = modTradeLands.translate("It highlights the limits of the current protected land."),
 	privs = {interact=true},
 	func = function(playername, param)
 		modTradeLands.doShowLand(playername)
@@ -9,7 +9,7 @@ minetest.register_chatcommand("showland", {
 
 minetest.register_chatcommand("sl", {
 	params = "",
-	description = "Destaca os limites da atual de terra protegida.",
+	description = modTradeLands.translate("It highlights the limits of the current protected land."),
 	privs = {interact=true},
 	func = function(playername, param)
 		modTradeLands.doShowLand(playername)
@@ -18,7 +18,7 @@ minetest.register_chatcommand("sl", {
 
 minetest.register_chatcommand("showarea", {
 	params = "",
-	description = "Destaca os limites da atual de terra protegida.",
+	description = modTradeLands.translate("It highlights the limits of the current protected land."),
 	privs = {interact=true},
 	func = function(playername, param)
 		modTradeLands.doShowLand(playername)
@@ -27,7 +27,7 @@ minetest.register_chatcommand("showarea", {
 
 minetest.register_chatcommand("sa", {
 	params = "",
-	description = "Destaca os limites da atual de terra protegida.",
+	description = modTradeLands.translate("It highlights the limits of the current protected land."),
 	privs = {interact=true},
 	func = function(playername, param)
 		modTradeLands.doShowLand(playername)

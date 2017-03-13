@@ -31,7 +31,13 @@ modTradeLands.changeModProtector = function(player)
 			landrush.claims[chunk] = nil
 			landrush.save_claims()
 			
-			minetest.chat_send_all("[TRADELANDS] O territorio ("..modTradeLands.getLandName(playerpos)..") que pertence de '"..landrush_owner.."' passou automaticamente a ter proteção de terreno com validade de tempo de "..modTradeLands.protected_days.." dias!")
+			minetest.chat_send_all("[TRADELANDS] "..modTradeLands.translate(
+				"The territory (%s) belonging to '%s' has automatically been granted earth protection with time validity of %02d days!"
+			):format(
+				modTradeLands.getLandName(playerpos), 
+				landrush_owner, 
+				modTradeLands.protected_days
+			))
 		end
 	end
 end

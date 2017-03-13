@@ -34,7 +34,7 @@ The player '%s' is trying to tinker with his terrain!=O jogador '%s' está tenta
 Area not protected, claim this area to build or mine!=Area nao protegida, reivindique essa area para construir ou minerar!
 
 LAND PERMISSION=ALVARÁ DE TERRENO
-Exibir Tamanho=Show Size
+Show Size=Exibir Tamanho
 Protect Land=Proteger Terreno
 Guest List=Listar Convidados
 Set up=Configurar
@@ -79,3 +79,5 @@ You can pay an advance license fee only once!=Você so pode pagar a taxa de alva
 Land Protection Permit=Alvará de Proteção de Terreno
 This lot belongs to '%s' for more %02d days!=Este terreno pertence a '%s' por mais %02d dias!
 You can not use the license very deeply!=Você não pode usar o alvará com muita profundidade!
+The territory (%s) belonging to '%s' has automatically been granted earth protection with time validity of %02d days!=O territorio (%s) que pertence a '%s' passou automaticamente a ter proteção de terreno com validade de tempo de %02d dias!
+It highlights the limits of the current protected land.=Destaca os limites da atual de terra protegida.

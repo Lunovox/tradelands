@@ -1,8 +1,8 @@
 local modname = minetest.get_current_modname()
 local modpath = minetest.get_modpath(modname)
 
-dofile(modpath.."/translate.lua")
 dofile(modpath.."/config.lua") -- <== Eh obrigatorio antes de 'api.lua'.
+dofile(modpath.."/translate.lua")  -- <== Tem que ser depois de 'config.lua'.
 dofile(modpath.."/api.lua")
 dofile(modpath.."/hud.lua")
 dofile(modpath.."/commands.lua")

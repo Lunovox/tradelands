@@ -1,16 +1,16 @@
 
 modTradeLands.pvp_types={  --O tipo de jogador que ter permissão de pvp no terreno. Aqui o admin pode traduzir as opções, mas não deve mudara a ordem.
-	[1]=S("None"), --Se o jogador prefere que não haja nenhum pvp no territorio.
-	[2]=S("Only the Owner"),  --Se o jogador prefere que só o proprietario possa entrar em pvp no territorio.
-	[3]=S("If Can Interact"),  --Se o jogador prefere que todos que pode interagir no territorio possam entrar em pvp no territorio.
-	[4]=S("Normal") --Se o jogador prefere que o pvp seja o padrão do servidor.
+	[1]=modTradeLands.translate("None"), --Se o jogador prefere que não haja nenhum pvp no territorio.
+	[2]=modTradeLands.translate("Only the Owner"),  --Se o jogador prefere que só o proprietario possa entrar em pvp no territorio.
+	[3]=modTradeLands.translate("If Can Interact"),  --Se o jogador prefere que todos que pode interagir no territorio possam entrar em pvp no territorio.
+	[4]=modTradeLands.translate("Normal") --Se o jogador prefere que o pvp seja o padrão do servidor.
 }
 
-modTradeLands.default_pvp = S("Normal") --permissão padrão para terrenos desprotegidos.
+modTradeLands.default_pvp = modTradeLands.translate("Normal") --permissão padrão para terrenos desprotegidos.
 
 minetest.register_privilege("mayor",  {
-	description=S("Privilege to be able to change the protected terrains of other players!"), 
-	give_to_singleplayer=false,
+	description=modTradeLands.translate("Privilege to be able to change the protected terrains of other players!"), 
+	--give_to_singleplayer=false,
 })
 
 minetest.register_entity("tradelands:showland",{
@@ -63,7 +63,7 @@ modTradeLands.doLoad = function()
 		modTradeLands.lands = minetest.deserialize(file:read("*all"))
 		file:close()
 		if type(modTradeLands.lands)=="table" then
-			minetest.log('action',"[TRADELANDS] modTradeLands.doLoad() ==> "..( S("Opening file '%s'!"):format(modTradeLands.filedatabase) ))
+			minetest.log('action',"[TRADELANDS] modTradeLands.doLoad() ==> "..( modTradeLands.translate("Opening file '%s'!"):format(modTradeLands.filedatabase) ))
 			return true --true = ok
 		end
 	end
@@ -100,10 +100,10 @@ modTradeLands.canInteract = function(pos, playername)
 				return true
 			end
 		else
-			minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos, playernames="..dump(playernames)..") "..S("A variável 'playername' precisa ser do tipo 'string' não vazia!"))
+			minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos, playernames="..dump(playernames)..") "..modTradeLands.translate("A variável 'playername' precisa ser do tipo 'string' não vazia!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return false
 end
@@ -116,7 +116,7 @@ modTradeLands.getOwnerName = function(pos)
 			return land.owner
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getOwnerName(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getOwnerName(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return ""
 end
@@ -129,7 +129,7 @@ modTradeLands.getDamageInteract = function(pos)
 			return modTradeLands.damage_interact
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getDamageInteract(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getDamageInteract(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return 0
 end
@@ -139,7 +139,7 @@ modTradeLands.getIfDamageString = function(pos) --Para ser retornada num formato
 		local damage = modTradeLands.getDamageInteract(pos)
 		if damage>0 then return "true" end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getIfDamageString(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getIfDamageString(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return "false"
 end
@@ -154,7 +154,7 @@ modTradeLands.ifMobCanAttack = function(pos)
 			return false
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.ifMobCanAttack(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.ifMobCanAttack(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return true
 end
@@ -167,7 +167,7 @@ modTradeLands.getPvpType = function(pos) -- Retorn a configuracao de Pvp no form
 			return land.pvp_type
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getPvpType(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getPvpType(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return modTradeLands.default_pvp
 end
@@ -194,7 +194,7 @@ modTradeLands.getPvpTypeIndex = function(pos) -- Retorn a configuracao de Pvp no
 			end
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getPvpTypeIndex(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getPvpTypeIndex(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return 0
 end
@@ -213,10 +213,10 @@ modTradeLands.ifCanPvp = function(pos, hittername)
 				return false --true = Cancela o PVP
 			end
 		else
-			minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.ifCanPvp(pos, hittername="..dump(hittername)..") "..S("The 'hittername' variable must be non-empty 'string' type!"))
+			minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.ifCanPvp(pos, hittername="..dump(hittername)..") "..modTradeLands.translate("The 'hittername' variable must be non-empty 'string' type!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.ifCanPvp(pos="..dump(pos)..", hittername) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.ifCanPvp(pos="..dump(pos)..", hittername) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return true
 end
@@ -229,7 +229,7 @@ modTradeLands.getGuests = function(pos) --Retorna uma tabela contendo o nomes do
 			return land.guests
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getGuests(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getGuests(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return {}
 end
@@ -248,7 +248,7 @@ modTradeLands.getGuestsTextList = function(pos)  --Retorna uma linha (para forms
 			return listGuests
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getGuestsTextList(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getGuestsTextList(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return ""
 end
@@ -263,7 +263,7 @@ modTradeLands.isGuest = function(pos, playername) --Verifica se um nome especifi
 				end
 			end
 		else
-			minetest.log('error',"[TRADELANDS] modTradeLands.isGuest(pos, playername) "..S("The 'playername' variable must be non-empty 'string' type!"))
+			minetest.log('error',"[TRADELANDS] modTradeLands.isGuest(pos, playername) "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
 		end
 	else
 		minetest.log('error',"[TRADELANDS] modTradeLands.isGuest(pos="..dump(pos)..", playername) A variavel 'pos' precisa ser do tipo 'position'!")
@@ -284,7 +284,7 @@ modTradeLands.getPermanentValidate = function(pos)
 			return land.permanent_validate
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getPermanentValidate(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getPermanentValidate(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return false
 end
@@ -303,7 +303,7 @@ modTradeLands.getValidate = function(pos) -- Retorna a 'datetime' de validade da
 			return land.validate
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getValidate(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getValidate(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return 0
 end
@@ -316,7 +316,7 @@ modTradeLands.getValidateRest = function(pos)
 		rest = validate - now
 		if rest<0 then rest=0 end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getValidateRest(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getValidateRest(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return rest
 end
@@ -326,7 +326,7 @@ modTradeLands.getDaysRest = function(pos)
 	if pos and pos.x and pos.y and pos.z then
 		dayRest = modTradeLands.getValidateRest(pos) / (60*60*24)
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getDaysRest(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getDaysRest(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	if dayRest < 0 then dayRest = 0 end
 	return dayRest
@@ -337,7 +337,7 @@ modTradeLands.getValidateString = function(timeMoment) --Converte uma 'datetime'
 	if type(timeMoment)=="number" then
 		valString = os.date("%Y-%m-%d %Hh:%Mm:%Ss", timeMoment)
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getValidateString(timeMoment="..dump(timeMoment)..") "..S("The variable 'timeMoment' must be of type 'date' of datetime!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getValidateString(timeMoment="..dump(timeMoment)..") "..modTradeLands.translate("The variable 'timeMoment' must be of type 'date' of datetime!"))
 	end
 	return valString
 end
@@ -351,7 +351,7 @@ modTradeLands.getNewValidate = function(pos) -- Retorna uma nova 'datetime' de v
 			newValidate = now + (60*60*24*modTradeLands.protected_days) + restValidate --Validade de 2.592.000 segundos (30 dias).
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getNewValidate(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.getNewValidate(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return newValidate
 end
@@ -367,7 +367,7 @@ modTradeLands.getLandName = function(pos) -- Retorna o endereço do lote do terr
 		p.z = math.floor(pos.z/side)
 		return "x"..p.x..",y"..p.y..",z"..p.z
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.getLandName(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.getLandName(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return "x0,y0,z0"
 end
@@ -382,7 +382,7 @@ modTradeLands.getPosShowLand = function(pos) -- retorna a posição central para
 		p.y = pos.y+0.5
 		p.z = (math.floor(pos.z/side)*side)+(side/2)-0.5
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.getPosShowLand(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.getPosShowLand(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return p
 end
@@ -397,7 +397,7 @@ modTradeLands.doShowLand = function(playername) --Cria uma instancia no mapa mos
 			minetest.env:add_entity(entpos, "tradelands:showland")
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.doShowLand(playername) "..S("The 'playername' variable must be non-empty 'string' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.doShowLand(playername) "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
 	end
 end
 
@@ -409,7 +409,7 @@ modTradeLands.doGiveUpLand = function(pos) --Impões se o terreno vai haver dano
 			return true
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.doGiveUpLand(pos="..dump(pos)..") "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.doGiveUpLand(pos="..dump(pos)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return false
 end
@@ -431,10 +431,10 @@ modTradeLands.setOwnerName = function(pos, playername) --Insere o nome do propri
 			if type(modTradeLands.lands[landname])~="table" then modTradeLands.lands[landname]={}	end
 			modTradeLands.lands[landname].owner=playername
 		else
-			minetest.log('error',"[TRADELANDS] modTradeLands.setOwnerName(pos, playername) "..S("The 'playername' variable must be non-empty 'string' type!"))
+			minetest.log('error',"[TRADELANDS] modTradeLands.setOwnerName(pos, playername) "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.setOwnerName(pos, playername) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.setOwnerName(pos, playername) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 end
 
@@ -446,10 +446,10 @@ modTradeLands.setIfDamageInteract = function(pos, ifDamage) --Impões se o terre
 			if type(modTradeLands.lands[landname])~="table" then modTradeLands.lands[landname]={}	end
 			modTradeLands.lands[landname].damage_interact = ifDamage
 		else
-			minetest.log('error',"[TRADELANDS] modTradeLands.setIfDamageInteract(pos, ifDamage) "..S("The 'ifDamage' variable must be a 'boolean' variable!"))
+			minetest.log('error',"[TRADELANDS] modTradeLands.setIfDamageInteract(pos, ifDamage) "..modTradeLands.translate("The 'ifDamage' variable must be a 'boolean' variable!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.setIfDamageInteract(pos, ifDamage) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.setIfDamageInteract(pos, ifDamage) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 end
 
@@ -472,10 +472,10 @@ modTradeLands.setPvpType = function(pos, newType) --Insere o tipo de pvp permiti
 			if type(modTradeLands.lands[landname])~="table" then modTradeLands.lands[landname]={}	end
 			modTradeLands.lands[landname].pvp_type = newType
 		else
-			minetest.log('error',"[TRADELANDS] modTradeLands.setPvpType(pos, newType) "..S("The 'newType' variable must be a pvp-type 'string' variable!"))
+			minetest.log('error',"[TRADELANDS] modTradeLands.setPvpType(pos, newType) "..modTradeLands.translate("The 'newType' variable must be a pvp-type 'string' variable!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.setPvpType(pos, newType) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.setPvpType(pos, newType) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 end
 
@@ -487,10 +487,10 @@ modTradeLands.setGuests = function(pos, tblGuests) --Insere na configuração do
 			if type(modTradeLands.lands[landname])~="table" then modTradeLands.lands[landname]={}	end
 			modTradeLands.lands[landname].guests = tblGuests
 		else
-			minetest.log('error',"[TRADELANDS] modTradeLands.setGuests(pos, tblGuests) "..S("The 'tblGuests' variable must be a 'table' variable!"))
+			minetest.log('error',"[TRADELANDS] modTradeLands.setGuests(pos, tblGuests) "..modTradeLands.translate("The 'tblGuests' variable must be a 'table' variable!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.setGuests(pos, tblGuests) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.setGuests(pos, tblGuests) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 end
 
@@ -501,10 +501,10 @@ modTradeLands.addGuest = function(pos, playername) --Adiciona um convidado no fo
 			table.insert(guests, minetest.formspec_escape(playername))
 			modTradeLands.setGuests(pos, guests)
 		else
-			minetest.log('error',"[TRADELANDS] modTradeLands.addGuest(pos, playername) "..S("The 'playername' variable must be non-empty 'string' type!"))
+			minetest.log('error',"[TRADELANDS] modTradeLands.addGuest(pos, playername) "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.addGuest(pos, playername) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.addGuest(pos, playername) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end	
 end
 
@@ -523,10 +523,10 @@ modTradeLands.delGuest = function(pos, nameOrIndex) -- Remove um convidado da li
 			end
 			modTradeLands.setGuests(pos, guests)
 		else
-			minetest.log('error',"[TRADELANDS] modTradeLands.delGuest(pos, nameOrIndex) "..S("The variable 'nameOrIndex' must be a player name, or the guest number in the list"))
+			minetest.log('error',"[TRADELANDS] modTradeLands.delGuest(pos, nameOrIndex) "..modTradeLands.translate("The variable 'nameOrIndex' must be a player name, or the guest number in the list"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.delGuest(pos, nameOrIndex) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS] modTradeLands.delGuest(pos, nameOrIndex) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 end
 
@@ -537,10 +537,10 @@ modTradeLands.setPermanentValidate = function(pos, ifPernanete)
 			local land = modTradeLands.getLand(landname)
 			land.permanent_validate = ifPernanete
 		else
-			minetest.log('error',"[TRADELANDS:ERROR] modTradeLands.setPermanentValidate(pos, ifPernanete) "..S("The variable 'ifPernanete' is not of the 'boolean' type!"))
+			minetest.log('error',"[TRADELANDS:ERROR] modTradeLands.setPermanentValidate(pos, ifPernanete) "..modTradeLands.translate("The variable 'ifPernanete' is not of the 'boolean' type!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERROR] modTradeLands.setPermanentValidate(pos, ifPernanete) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERROR] modTradeLands.setPermanentValidate(pos, ifPernanete) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 end
 
@@ -552,10 +552,10 @@ modTradeLands.setValidate = function(pos, timeSecounds) --Insere uma nova valida
 			if type(modTradeLands.lands[landname])~="table" then modTradeLands.lands[landname]={}	end
 			modTradeLands.lands[landname].validate=timeSecounds
 		else
-			minetest.log('error',"[TRADELANDS:ERROR] modTradeLands.setValidate(pos, timeSecounds) "..S("The 'timeSecounds' variable is not non-negative 'number' type!"))
+			minetest.log('error',"[TRADELANDS:ERROR] modTradeLands.setValidate(pos, timeSecounds) "..modTradeLands.translate("The 'timeSecounds' variable is not non-negative 'number' type!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERROR] modTradeLands.setValidate(pos, timeSecounds) "..S("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERROR] modTradeLands.setValidate(pos, timeSecounds) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end	
 end
 
@@ -578,13 +578,13 @@ minetest.register_on_protection_violation(function(pos, playername)
 			end
 			
 			--minetest.chat_send_player(playername, "[TRADELANDS] Voce está tentando cavar o terreno que pertence a '"..modTradeLands.getOwnerName(pos).."' ate '"..modTradeLands.getValidateString(modTradeLands.getValidate(pos)).."'!")
-			minetest.chat_send_player(playername, "[TRADELANDS] "..S("You are trying to dig the terrain that belongs to Lunovox").." '"..modTradeLands.getOwnerName(pos).."'!")
+			minetest.chat_send_player(playername, "[TRADELANDS] "..modTradeLands.translate("You are trying to dig the terrain that belongs to Lunovox").." '"..modTradeLands.getOwnerName(pos).."'!")
 		
 			local ownername = modTradeLands.getOwnerName(pos)
 			if ownername and ownername~="" then
 				local owner = minetest.get_player_by_name(ownername) 		
 				if owner and owner:is_player() then
-					minetest.chat_send_player(ownername, "[TRADELANDS] "..S("The player '%s' is trying to dig in his field!"):format(playername))
+					minetest.chat_send_player(ownername, "[TRADELANDS] "..modTradeLands.translate("The player '%s' is trying to dig in his field!"):format(playername))
 				end
 			end
 			return
@@ -615,22 +615,22 @@ function minetest.item_place(itemstack, placer, pointed_thing)
 			local temp_pos = pos
 			temp_pos.x = pos.x + 2
 			if playername ~= modTradeLands.getOwnerName(temp_pos) then
-				minetest.chat_send_player( playername, S("Do not place TNT near protected areas!") )
+				minetest.chat_send_player( playername, modTradeLands.translate("Do not place TNT near protected areas!") )
 				return itemstack
 			end
 			temp_pos.x = pos.x - 2
 			if playername ~= modTradeLands.getOwnerName(temp_pos) then
-				minetest.chat_send_player( playername, S("Do not place TNT near protected areas!") )
+				minetest.chat_send_player( playername, modTradeLands.translate("Do not place TNT near protected areas!") )
 				return itemstack
 			end
 			temp_pos.z = pos.z + 2
 			if playername ~= modTradeLands.getOwnerName(temp_pos) then
-				minetest.chat_send_player( playername, S("Do not place TNT near protected areas!") )
+				minetest.chat_send_player( playername, modTradeLands.translate("Do not place TNT near protected areas!") )
 				return itemstack
 			end
 			temp_pos.z = pos.z - 2
 			if playername ~= modTradeLands.getOwnerName(temp_pos) then
-				minetest.chat_send_player( playername, S("Do not place TNT near protected areas!") )
+				minetest.chat_send_player( playername, modTradeLands.translate("Do not place TNT near protected areas!") )
 				return itemstack
 			end
 		end
@@ -639,13 +639,13 @@ function minetest.item_place(itemstack, placer, pointed_thing)
 	else
 		if ownername~="" then
 			--minetest.chat_send_player(playername, "[TRADELANDS] Este terreno pertence a '"..modTradeLands.getOwnerName(pos).."' ate '"..modTradeLands.getValidateString(modTradeLands.getValidate(pos)).."'!")
-			minetest.chat_send_player(playername, "[TRADELANDS] "..S("This land belongs to '%s'!"):format(modTradeLands.getOwnerName(pos)))
+			minetest.chat_send_player(playername, "[TRADELANDS] "..modTradeLands.translate("This land belongs to '%s'!"):format(modTradeLands.getOwnerName(pos)))
 		
 			local ownername = modTradeLands.getOwnerName(pos)
 			if ownername and ownername~="" then
 				local owner = minetest.get_player_by_name(ownername) 		
 				if owner and owner:is_player() then
-					minetest.chat_send_player(ownername, "[TRADELANDS] "..S("The player '%s' is trying to tinker with his terrain!"):format(playername))
+					minetest.chat_send_player(ownername, "[TRADELANDS] "..modTradeLands.translate("The player '%s' is trying to tinker with his terrain!"):format(playername))
 				end
 			end
 		
@@ -653,7 +653,7 @@ function minetest.item_place(itemstack, placer, pointed_thing)
 			--minetest.chat_send_player(playername, "Esta area pertence a '"..ownername.."'.")
 			return itemstack
 		else
-			minetest.chat_send_player(playername, S("Area not protected, claim this area to build or mine!"))
+			minetest.chat_send_player(playername, modTradeLands.translate("Area not protected, claim this area to build or mine!"))
 			return itemstack
 		end
 	end
