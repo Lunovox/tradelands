@@ -9,7 +9,8 @@ modTradeLands = {
 	protected_days = 15, --O acrescimo de tempo sobre a protecao do terreno. Seo o valor por zero(0) entao a proteção será de 100 anos.
 	price={ --Itens que serão pagos pelo jogador para proteger o terreno. (máximo de 4 tipos de ítens)
 		--"default:steel_ingot 2", "default:gold_ingot 2"
-		"lunotrades:minemoney 3", "lunotrades:minecoin 3" --Equivale a 30 moedas
+		--"lunotrades:minemoney 3", "lunotrades:minecoin 3" --Equivale a 30 moedas
+		"default:gold_ingot 3", "default:steel_ingot 3" --Equivale a 30 moedas
 	}, 
 	damage_interact = 6, --O valor do dano que o jogador receberá se forçar interagir com o terreno. (6 x 0,5 = 3HP)
 	
