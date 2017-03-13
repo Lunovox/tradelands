@@ -10,7 +10,7 @@ modTradeLands.default_pvp = modTradeLands.translate("Normal") --permissão padr�
 
 minetest.register_privilege("mayor",  {
 	description=modTradeLands.translate("Privilege to be able to change the protected terrains of other players!"), 
-	--give_to_singleplayer=false,
+	give_to_singleplayer=false,
 })
 
 minetest.register_entity("tradelands:showland",{
@@ -100,7 +100,7 @@ modTradeLands.canInteract = function(pos, playername)
 				return true
 			end
 		else
-			minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos, playernames="..dump(playernames)..") "..modTradeLands.translate("A variável 'playername' precisa ser do tipo 'string' não vazia!"))
+			minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos, playernames="..dump(playernames)..") "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
 		end
 	else
 		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
