@@ -1,16 +1,16 @@
 modTradeLands = {
-	filedatabase = minetest.get_worldpath().."/tradelands.db", --Arquivo que guarda obanco de dados dos terrenos protegidos.
-	autochange_landrush = true, --Se o admin deseja que as proteções permanente do mod landrush sejam substituidas automaticamente pelas proteções temporárias do mod tradelands conforme o jogador passeia pelo mapa.
-	time_showarea = 16, --Tempo de existencia do bloco gigante que mostra o tamanho de terreno.
+	filedatabase = minetest.get_worldpath().."/tradelands.db", --File that stores the database of protected lands.
+	autochange_landrush = true, --If the admin wants the permanent protections of the mod landrush to be automatically replaced by the temporary protections of the mod tradelands as the player walks by the map.
+	time_showarea = 16, --Time in secounds to to show the limit of land size.
 	areaSize = {
-		side = 16, --16x16 de terreno
-		high = 200, --100 para cima, e 100 para baixo
+		side = 16, --16x16 size of land
+		high = 200, --100 to up, and 100 to down
 	},
-	protected_days = 15, --O acrescimo de tempo sobre a protecao do terreno. Seo o valor por zero(0) entao a proteção será de 100 anos.
-	price={ --Itens que serão pagos pelo jogador para proteger o terreno. (máximo de 4 tipos de ítens)
+	protected_days = 15, --The addition of time on the protection of the land. If the value is 0 (zero) then the protection will be 100 real years (same that permanent).
+	price={ --Items that the player must pay to protect the land. (Maximum of 4 item types)
 		"default:gold_ingot 3", "default:steel_ingot 3"
-		--"lunotrades:minemoney 3", "lunotrades:minecoin 3" --Equivale a 30 moedas
+		--"minertrade:minermoney 3", "minertrade:minercoin 3" --If you want the mod minertrade do download in: https://github.com/Lunovox/minertrade
 	}, 
-	damage_interact = 6, --O valor do dano que o jogador receberá se forçar interagir com o terreno. (6 x 0,5 = 3HP)
+	damage_interact = 6, --The amount of damage that the player will receive if it forces interact with the terrain. (6 x 0.5 = 3HP)
 	
 }
