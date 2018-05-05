@@ -327,9 +327,9 @@ minetest.register_craftitem("tradelands:charter", {
 minetest.register_craft({
 	output = 'tradelands:charter',
 	recipe = {
-		{"default:paper"	,"default:paper"	,"default:mese_crystal_fragment"},
-		{"default:paper"	,"default:paper"	,"default:mese_crystal_fragment"},
-		{"dye:red"			,"default:paper"	,"default:mese"},
+		{"default:paper"	,"default:paper"	,""},
+		{"default:paper"	,"default:paper"	,""},
+		{"group:dye"		,"default:paper"	,"default:skeleton_key"},
 	}
 })
 
