@@ -576,6 +576,27 @@ minetest.register_on_protection_violation(function(pos, playername)
 			if damage>0 then
 				player:set_hp(player:get_hp()-damage) 
 			end
+
+   if modTradeLands.auto_flip then
+      local yaw = player:get_look_horizontal() + math.pi
+      if yaw > 2 * math.pi then
+         yaw = yaw - 2 * math.pi
+      end
+      player:set_look_horizontal(yaw)
+   
+      -- invert pitch
+      player:set_look_vertical(-player:get_look_vertical())
+
+      -- if digging below player, move up to avoid falling through hole
+      local pla_pos = player:get_pos()
+      if pos.y < pla_pos.y then
+         player:set_pos({
+            x = pla_pos.x,
+            y = pla_pos.y + 0.8,
+            z = pla_pos.z
+         })
+      end
+   end
 			
 			--minetest.chat_send_player(playername, "[TRADELANDS] Voce está tentando cavar o terreno que pertence a '"..modTradeLands.getOwnerName(pos).."' ate '"..modTradeLands.getValidateString(modTradeLands.getValidate(pos)).."'!")
 			minetest.chat_send_player(playername, "[TRADELANDS] "..modTradeLands.translate("You are trying to dig the terrain that belongs to Lunovox").." '"..modTradeLands.getOwnerName(pos).."'!")
