@@ -72,7 +72,7 @@ modTradeLands.doLoad = function()
 end
 
 modTradeLands.doSoundProtector = function()
-	minetest.sound_play("sfx_protector", {gain=1.0}) --Executa um som global!
+	minetest.sound_play("sfx_cheer_applaud", {gain=1.0}) --Executa um som global!
 end
 
 modTradeLands.getMaxDepth = function()
