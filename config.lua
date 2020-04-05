@@ -13,4 +13,7 @@ modTradeLands = {
 	}, 
 	damage_interact = 6, --The amount of damage that the player will receive if it forces interact with the terrain. (6 x 0.5 = 3HP)
 	auto_flip = true, --Rotate the player on interact with a protected land of other player.
+   ChestLocked = {
+      replaceProtection = true 
+   },
 }

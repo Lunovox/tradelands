@@ -16,7 +16,7 @@ Protection of land on payment of periodic rate. The Minetest player can set perm
  * GNU AGPL: https://pt.wikipedia.org/wiki/GNU_Affero_General_Public_License
 
 **Developers:**
- * [Lunovox](mailto:lunovox@openmailbox.org)
+ * Lunovox Heavenfinder: [email](mailto:lunovox@disroot.org), [xmpp](xmpp:lunovox@disroot.org?join), [social web](http:mastodon.social/@lunovox), [audio conference](mumble:libreplanetbr.org), [more contacts](https:libreplanet.org/wiki/User:Lunovox)
 
 **Settings:**
   * Change the file **'[config.lua](https://github.com/Lunovox/tradelands/blob/master/config.lua)'** to change the initial settings of the mod, such as:

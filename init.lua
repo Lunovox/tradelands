@@ -7,6 +7,7 @@ dofile(modpath.."/api.lua")
 dofile(modpath.."/hud.lua")
 dofile(modpath.."/commands.lua")
 dofile(modpath.."/charter.lua") --Alvará de Terreno
+dofile(modpath.."/modify_chestlocked.lua")
 
 --modTradeLands.setOwnerName({x=0,y=5,z=125}, "Lunovox")
 --modTradeLands.setIfDamageInteract({x=0,y=5,z=125}, true)
