@@ -187,8 +187,8 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		elseif fields.btnGuestsForm then
 			minetest.show_formspec(playername, "frmTradelands", modTradeLands.getFormSpecGuests(playerpos, playername))
 		elseif fields.btnNewGuest then
-			if type(fields.txtNewGuest)=="string" and fields.txtNewGuest~="" then
-				modTradeLands.addGuest(playerpos, fields.txtNewGuest)
+			if type(fields.txtNewGuest)=="string" and fields.txtNewGuest:trim()~="" then
+				modTradeLands.addGuest(playerpos, fields.txtNewGuest:trim())
 			else
 				minetest.chat_send_player(playername, "[TRADELANDS:ERRO] "..modTradeLands.translate("Enter the 'Guest Name' before pressing the 'Add Guest' button!"))
 			end

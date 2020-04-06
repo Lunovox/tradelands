@@ -263,10 +263,10 @@ modTradeLands.isGuest = function(pos, playername) --Verifica se um nome especifi
 				end
 			end
 		else
-			minetest.log('error',"[TRADELANDS] modTradeLands.isGuest(pos, playername) "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
+			minetest.log('error',"[TRADELANDS] modTradeLands.isGuest(pos="..dump(pos)..", playername='"..dump(playername).."') "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS] modTradeLands.isGuest(pos="..dump(pos)..", playername) A variavel 'pos' precisa ser do tipo 'position'!")
+		minetest.log('error',"[TRADELANDS] modTradeLands.isGuest(pos="..dump(pos)..", playername='"..dump(playername).."') "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return false
 end
@@ -496,9 +496,9 @@ end
 
 modTradeLands.addGuest = function(pos, playername) --Adiciona um convidado no formato 'string' junto lista de convidados do terreno.
 	if pos and pos.x and pos.y and pos.z then
-		if type(playername)=="string" and playername~="" then
+		if type(playername)=="string" and playername:trim()~="" then
 			local guests = modTradeLands.getGuests(pos)
-			table.insert(guests, minetest.formspec_escape(playername))
+			table.insert(guests, minetest.formspec_escape(playername:trim()))
 			modTradeLands.setGuests(pos, guests)
 		else
 			minetest.log('error',"[TRADELANDS] modTradeLands.addGuest(pos, playername) "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
