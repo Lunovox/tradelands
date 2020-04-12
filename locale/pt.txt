@@ -26,7 +26,7 @@ The variable 'nameOrIndex' must be a player name, or the guest number in the lis
 The variable 'ifPernanete' is not of the boolean type!=A variavel 'ifPernanete' não é do tipo 'boolean'!
 The 'timeSecounds' variable is not non-negative 'number' type!=A variavel 'timeSecounds' não é do tipo 'number' não-negativa!
 
-You are trying to dig the terrain that belongs to=Voce está tentando cavar o terreno que pertence a
+You are trying to dig the terrain that belongs to '%s'!=Voce está tentando cavar o terreno que pertence a '%s'!
 The player '%s' is trying to dig in his field!=O jogador '%s' está tentando cavar em seu terreno!
 Do not place TNT near protected areas!=Nao coloque TNT perto de areas protegida!
 This land belongs to '%s'!=Este terreno pertence a '%s'!

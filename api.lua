@@ -597,9 +597,7 @@ minetest.register_on_protection_violation(function(pos, playername)
          })
       end
    end
-			
-			--minetest.chat_send_player(playername, "[TRADELANDS] Voce está tentando cavar o terreno que pertence a '"..modTradeLands.getOwnerName(pos).."' ate '"..modTradeLands.getValidateString(modTradeLands.getValidate(pos)).."'!")
-			minetest.chat_send_player(playername, "[TRADELANDS] "..modTradeLands.translate("You are trying to dig the terrain that belongs to Lunovox").." '"..modTradeLands.getOwnerName(pos).."'!")
+			minetest.chat_send_player(playername, "[TRADELANDS] "..modTradeLands.translate("You are trying to dig the terrain that belongs to '%s'!"):format(modTradeLands.getOwnerName(pos)))
 		
 			local ownername = modTradeLands.getOwnerName(pos)
 			if ownername and ownername~="" then
