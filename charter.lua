@@ -297,11 +297,7 @@ modTradeLands.doPay = function(playername) --Faz o pagamento do terreno
 	end
 end
 
-minetest.register_craftitem("tradelands:charter", {
-	description = modTradeLands.translate("Land Protection Permit")
-		.." ("..modTradeLands.areaSize.side.."x"..modTradeLands.areaSize.side..")",
-	inventory_image = "icon_charter.png",
-	on_use = function(itemstack, user, pointed_thing)
+modTradeLands.doUseCharter = function(user)
 		local playername = user:get_player_name()
 		local selPos = user:getpos()
 		if selPos.y >= modTradeLands.getMaxDepth() then
@@ -316,12 +312,19 @@ minetest.register_craftitem("tradelands:charter", {
 				minetest.show_formspec(playername, "frmTradelands", modTradeLands.getFormMain(selPos, playername))
 			else
 				minetest.chat_send_player(playername, "[TRADELANDS] "..modTradeLands.translate("This lot belongs to '%s' for more %02d days!"):format(ownername, math.ceil(restDays)) )
-				
 			end
 		else
 			minetest.chat_send_player(playername, "[TRADELANDS] "..modTradeLands.translate("You can not use the license very deeply!"))
 		end
-	end,
+	end
+
+minetest.register_craftitem("tradelands:charter", {
+	description = modTradeLands.translate("Land Protection Permit")
+		.." ("..modTradeLands.areaSize.side.."x"..modTradeLands.areaSize.side..")",
+	inventory_image = "icon_charter.png",
+	on_use = function(itemstack, user, pointed_thing)
+   modTradeLands.doUseCharter(user)
+ end,
 })
 
 minetest.register_craft({
