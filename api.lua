@@ -44,7 +44,7 @@ minetest.register_entity("tradelands:showland",{
 		initial_sprite_basepos = {x=0, y=0},
 		is_visible = true,
 		makes_footstep_sound = false,
-		automatic_rotate = false,
+		automatic_rotate = 0, --<= Velocidade de rotação (Default: 0.5) --Fonte: https://github.com/minetest/minetest/pull/8468
 	}
 })
 
@@ -99,8 +99,8 @@ modTradeLands.canInteract = function(pos, playername)
 			then 
 				return true
 			end
-		else
-			minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername="..dump(playername)..") "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
+		--else
+			--wminetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername="..dump(playername)..") "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
 		end
 	else
 		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
