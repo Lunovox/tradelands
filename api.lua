@@ -103,7 +103,7 @@ modTradeLands.canInteract = function(pos, playername)
 			--wminetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername="..dump(playername)..") "..modTradeLands.translate("The 'playername' variable must be non-empty 'string' type!"))
 		end
 	else
-		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername) "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
+		minetest.log('error',"[TRADELANDS:ERRO] modTradeLands.canInteract(pos="..dump(pos)..", playername="..dump(playername)..") "..modTradeLands.translate("The 'pos' variable must be of the 'position' type!"))
 	end
 	return false
 end
